@@ -43,7 +43,7 @@ def passes_on_reset(verifier, seed):
 
 ## Seen in the wild
 
-- [huggingface/OpenEnv#1475](https://github.com/huggingface/OpenEnv/issues/1475): in `agent_world_model_env`, 1,681 of 10,000 code verifiers return `complete` on the untouched seeded database, because the seed already holds the row the task asks the agent to create.
+- [openenv/OpenEnv#1475](https://github.com/openenv/OpenEnv/issues/1475): in `agent_world_model_env`, 1,681 of 10,000 code verifiers return `complete` on the untouched seeded database, because the seed already holds the row the task asks the agent to create.
 - [Handshake-AI-Research/ATLAS-Finance#12](https://github.com/Handshake-AI-Research/ATLAS-Finance/issues/12): on three tasks a blank workbook fails every section gate, every critical criterion is then skipped, and the trial counts as a pass for pass@k (see also [08](../08-failure-defaults-to-pass/)).
 
 ## Run the example
