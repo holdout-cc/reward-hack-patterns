@@ -64,7 +64,7 @@ python -m pytest tests/
 python tests/test_examples.py
 ```
 
-The examples need Python 3.9 or later and nothing outside the standard library.
+The examples need Python 3.9 or later and nothing outside the standard library. CI runs them on Python 3.9 to 3.13.
 
 ## About the "Seen in the wild" links
 
