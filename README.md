@@ -72,7 +72,7 @@ The links point to public issues filed on the named repositories, each with a re
 
 ## Contributing
 
-Issues and pull requests are welcome: new patterns, better fixes, clearer examples, or public instances of a pattern that should be linked. For a new pattern, please include a runnable stdlib-only `example.py` in the same shape as the others, and make sure `python tests/test_examples.py` passes. For a new "Seen in the wild" link, please link a public issue or write-up that shows the instance.
+Issues and pull requests are welcome: new patterns, better fixes, clearer examples, or public instances of a pattern that should be linked. For a new pattern, please include a runnable stdlib-only `example.py` in the same shape as the others, and make sure `python tests/test_examples.py` passes. For a new "Seen in the wild" link, please link a public issue or write-up that shows the instance. See [CONTRIBUTING.md](CONTRIBUTING.md) for the details.
 
 ## License
 
