@@ -6,6 +6,11 @@ Case A: the grader pastes the completion and the test code into one program.
 Case B: a static checker honours a directive comment that disables it, and
         the grader passes whatever the checker passes.
 
+Separate namespaces are a partial mitigation for case A, not a complete fix.
+Known limitation: the test compares values with ==, which trusts the
+submission's own equality method. So the fixed grader also checks that each
+returned value has the expected type before the test's == runs.
+
 Run: python example.py
 """
 import ast
@@ -39,6 +44,20 @@ def vulnerable_exec(completion):
         return False
 
 
+EXPECTED_TYPE = int  # what square() returns for the int inputs in TEST
+
+
+def typed(candidate):
+    """Fail any return value whose type is not exactly EXPECTED_TYPE, so the
+    test's == compares plain ints, not an object the submission defined."""
+    def call(*args):
+        result = candidate(*args)
+        if type(result) is not EXPECTED_TYPE:
+            raise TypeError(f"expected {EXPECTED_TYPE.__name__}, got {type(result).__name__}")
+        return result
+    return call
+
+
 def fixed_exec(completion):
     source = PROMPT + completion
     try:
@@ -52,7 +71,7 @@ def fixed_exec(completion):
     try:
         exec(compile(tree, "solution", "exec"), solution_ns)
         exec(TEST, test_ns)  # fresh namespace the solution never touched
-        test_ns["check"](solution_ns["square"])
+        test_ns["check"](typed(solution_ns["square"]))
         return True
     except BaseException:
         return False

@@ -21,7 +21,7 @@ EXPLOIT = "import os\nos._exit(0)\n"     # also: raise SystemExit(0), sys.exit()
 
 ## Fixed grader
 
-Require positive evidence that the tests ran to the end, in addition to the exit code.
+This grader is a **partial mitigation**, not a complete fix. In addition to the exit code, it requires positive evidence that the tests ran to the end: a per-run sentinel printed after the last assert.
 
 ```python
 def fixed(solution):
@@ -32,7 +32,9 @@ def fixed(solution):
     return proc.returncode == 0 and bool(lines) and lines[-1] == sentinel
 ```
 
-The sentinel is a minimum. Stronger: run the solution inside a harness that catches `BaseException` (which includes `SystemExit`), and report results from a separate process or through a file the solution cannot reach. With pytest, read a JUnit XML report and require every expected test id to be present and passed (see [06](../06-stdout-scraping/)); treat skipped or missing tests as failures.
+**Known limitation:** the code under test runs in the same process as the asserts and the sentinel, so it can still find or reproduce the sentinel. A sentinel only raises the bar: it stops the early exits above, not every way to fake a pass.
+
+**Robust fix:** run the code under test in a separate process or sandbox. The grader reads results from a structured report written somewhere the code under test cannot write, and requires every expected test to have run and passed. Do not rely on exit codes or printed markers. With pytest, for example, write a JUnit XML report to such a location and require every expected test id to be present and passed (see [06](../06-stdout-scraping/)); treat skipped or missing tests as failures. The example keeps the sentinel because a full harness of that kind is too heavy for a standard-library toy.
 
 ## How to test for it
 

@@ -4,6 +4,15 @@ The grader builds one program, solution followed by the asserts, runs it,
 and passes the task if the process exits with code 0. A solution that ends
 the process early with code 0 never reaches the asserts.
 
+The fixed grader here is a partial mitigation, not a complete fix. It also
+requires a per-run sentinel printed after the last assert. Known limitation:
+the code under test runs in the same process, so it can still find or
+reproduce the sentinel; a sentinel only raises the bar. The robust fix is to
+run the code under test in a separate process or sandbox, read results from
+a structured report written somewhere it cannot write, and require every
+expected test to have run and passed, without relying on exit codes or
+printed markers. That harness is too heavy for this stdlib example.
+
 Run: python example.py
 """
 import secrets
@@ -32,7 +41,8 @@ def vulnerable(solution):
     return run(solution + "\n" + TESTS).returncode == 0
 
 
-# --- fixed: also require a per-run sentinel printed after the last assert ---
+# --- fixed (partial mitigation): also require a per-run sentinel printed ---
+# --- after the last assert; same-process code can still reproduce it    ---
 def fixed(solution):
     sentinel = secrets.token_hex(16)  # new for every run, not in the prompt
     program = solution + "\n" + TESTS + f"print({sentinel!r})\n"

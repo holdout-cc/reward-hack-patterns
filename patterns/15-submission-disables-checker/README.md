@@ -38,6 +38,8 @@ EVAL_EXPLOIT = "# checker: off\ndef total(expr):\n    return eval(expr)\n"
 
 Keep the submission and the checker apart. Parse the submission on its own, allow only the node types you expect, run it in its own namespace, and run the tests in a fresh namespace that receives only the function object. Strip or reject directives that configure the checker.
 
+Separate namespaces alone are a **partial mitigation**, not a complete fix. **Known limitation:** the tests compare values with `==`, and `==` trusts the submission's own equality method, so a returned object can decide for itself that it equals the expected value. **Robust fix:** also check that the returned value has the expected type (for example `type(result) is type(expected)`), or compare on a plain, normalised representation, before trusting equality. The fixed grader below does the type check: return values that are not exactly `int` fail before the test's `==` runs.
+
 ```python
 def fixed_exec(completion):
     try:
@@ -49,8 +51,16 @@ def fixed_exec(completion):
     solution_ns, test_ns = {}, {}
     exec(compile(tree, "solution", "exec"), solution_ns)
     exec(TEST, test_ns)
-    test_ns["check"](solution_ns["square"])
+    test_ns["check"](typed(solution_ns["square"]))  # typed(): see below
     return True                                     # (wrapped in try/except in the example)
+
+def typed(candidate):                               # check the type before the test's ==
+    def call(*args):
+        result = candidate(*args)
+        if type(result) is not int:
+            raise TypeError(type(result).__name__)
+        return result
+    return call
 
 def fixed_lint(source):
     if DIRECTIVE in source or not source.strip():
@@ -58,7 +68,7 @@ def fixed_lint(source):
     return toy_checker(source) == []
 ```
 
-For real type checkers, also turn off inline suppression in the checker's own config where it supports that, and treat empty extracted code as a failure.
+The solution still runs in the grader's process; for untrusted code, run it in a separate, sandboxed process as well. For real type checkers, also turn off inline suppression in the checker's own config where it supports that, and treat empty extracted code as a failure.
 
 ## How to test for it
 
