@@ -8,10 +8,12 @@ The fixed grader here is a partial mitigation, not a complete fix. It also
 requires a per-run sentinel printed after the last assert. Known limitation:
 the code under test runs in the same process, so it can still find or
 reproduce the sentinel; a sentinel only raises the bar. The robust fix is to
-run the code under test in a separate process or sandbox, read results from
-a structured report written somewhere it cannot write, and require every
-expected test to have run and passed, without relying on exit codes or
-printed markers. That harness is too heavy for this stdlib example.
+have the results recorded by a trusted process that never imports or runs the
+code under test in its own process, and to require the expected test IDs with
+the expected outcomes (skipped, missing or extra tests fail), without relying
+on exit codes or printed markers. A JUnit report written from inside the same
+pytest process is stronger than an exit code but can still be forged. That
+harness is too heavy for this stdlib example.
 
 Run: python example.py
 """

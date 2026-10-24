@@ -2,7 +2,7 @@
 
 A practical catalogue of the ways RL environment graders and eval scorers give credit for work that was not done, or fail work that was.
 
-It is written for people who build RL environments and benchmarks. Each pattern has a short explanation, a minimal vulnerable grader with its exploit, a fixed grader, a way to test for it, and links to real public issues where it was found. Every pattern also has a small, runnable Python example (standard library only) that shows the vulnerable grader accepting the exploit, the fixed grader rejecting it, and a correct answer passing both.
+It is written for people who build RL environments and benchmarks. Each pattern has a short explanation, a minimal vulnerable grader with its exploit, a fixed grader (labelled a partial mitigation where it only raises the bar, with the robust fix described), a way to test for it, and links to real public issues where it was found. Every pattern also has a small, runnable Python example (standard library only) that shows the vulnerable grader accepting the exploit, the fixed grader rejecting it, and a correct answer passing both.
 
 The examples are toys. They are deliberately small so the bug is visible in a few lines. Real instances are usually spread across a config file, a container mount and a scoring script, which is why they survive review.
 

@@ -8,7 +8,7 @@ Open an issue first if you're unsure whether it's a separate pattern or a varian
 
 A pattern pull request adds a folder `patterns/NN-short-slug/` with two files:
 
-- `README.md` with these sections, in this order: **What it is**, **Why it matters**, **Vulnerable grader and exploit**, **Fixed grader**, **How to test for it**, **Seen in the wild**. Keep it short; the existing patterns are the model.
+- `README.md` with these sections, in this order: **What it is**, **Why it matters**, **Vulnerable grader and exploit**, **Fixed grader** (**Partially mitigated grader** when the example only raises the bar), **How to test for it**, **Seen in the wild**. Keep it short; the existing patterns are the model.
 - `example.py`: a self-contained demo that uses only the Python standard library and runs on Python 3.9 or later. It must show three things and exit non-zero if any of them fails:
   1. the vulnerable grader gives credit to the exploit;
   2. the fixed grader rejects it;

@@ -8,8 +8,16 @@ Case B: a static checker honours a directive comment that disables it, and
 
 Separate namespaces are a partial mitigation for case A, not a complete fix.
 Known limitation: the test compares values with ==, which trusts the
-submission's own equality method. So the fixed grader also checks that each
-returned value has the expected type before the test's == runs.
+submission's own equality method.
+
+Stronger (covers equality spoofing): the fixed grader also checks that each
+returned value has the expected type before the test's == runs. An exact-type
+check also rejects value-correct answers of another type (e.g. 9.0 for 9);
+normalise the representation where that matters.
+
+Robust fix (not done here; too heavy for a stdlib example): run the
+submission in a separate sandboxed process and compare plain serialized
+values, which carry no methods of their own.
 
 Run: python example.py
 """

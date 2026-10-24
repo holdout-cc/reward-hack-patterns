@@ -38,7 +38,11 @@ EVAL_EXPLOIT = "# checker: off\ndef total(expr):\n    return eval(expr)\n"
 
 Keep the submission and the checker apart. Parse the submission on its own, allow only the node types you expect, run it in its own namespace, and run the tests in a fresh namespace that receives only the function object. Strip or reject directives that configure the checker.
 
-Separate namespaces alone are a **partial mitigation**, not a complete fix. **Known limitation:** the tests compare values with `==`, and `==` trusts the submission's own equality method, so a returned object can decide for itself that it equals the expected value. **Robust fix:** also check that the returned value has the expected type (for example `type(result) is type(expected)`), or compare on a plain, normalised representation, before trusting equality. The fixed grader below does the type check: return values that are not exactly `int` fail before the test's `==` runs.
+Separate namespaces alone are a **partial mitigation**, not a complete fix. **Known limitation:** the tests compare values with `==`, and `==` trusts the submission's own equality method, so a returned object can decide for itself that it equals the expected value.
+
+**Stronger (covers equality spoofing):** check that the returned value has the expected type (for example `type(result) is type(expected)`) before trusting equality. The fixed grader below does this: return values that are not exactly `int` fail before the test's `==` runs. An exact-type check also rejects value-correct answers of another type (for example `9.0` for `9`); where that matters, normalise the representation (for example convert to a canonical number or string) before comparing. The solution still runs in the grader's process, so this is not yet the robust fix.
+
+**Robust fix:** run the submission in a separate, sandboxed process, have it return plain serialized values (for example JSON), and compare those values in the grader's process. A serialized value carries no methods, so the submission cannot decide what it equals, and it cannot reach the checker's code or namespace.
 
 ```python
 def fixed_exec(completion):
@@ -68,7 +72,7 @@ def fixed_lint(source):
     return toy_checker(source) == []
 ```
 
-The solution still runs in the grader's process; for untrusted code, run it in a separate, sandboxed process as well. For real type checkers, also turn off inline suppression in the checker's own config where it supports that, and treat empty extracted code as a failure.
+The example keeps the solution in the grader's process because a sandboxed runner is too heavy for a standard-library toy; for untrusted code, use the robust fix above. For real type checkers, also turn off inline suppression in the checker's own config where it supports that, and treat empty extracted code as a failure.
 
 ## How to test for it
 
