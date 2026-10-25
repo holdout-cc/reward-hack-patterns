@@ -1,5 +1,10 @@
 # RHP-13. Checks that ignore their own options
 
+- **TL;DR:** A scorer accepts an option that should make it stricter (a tolerance, schema or budget) and never applies it.
+- **Typical impact:** Every output between the documented bar and the real one gets credit, and nothing fails loudly.
+- **Quick test:** For each documented option, write one test where the option changes the result. If no such test can be written, the option does nothing.
+- **Automated check:** Partly: with the option passed through an adapter, [`wrong_answer`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#wrong_answer) and [`wrong_superstring`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#wrong_superstring) flag the false credit that results, but do not show that the option is ignored.
+
 ## What it is
 
 A scorer or verifier accepts an option that should make it stricter (a tolerance, a schema, a step budget, a required field list) and then does not use it. Often the option is swallowed by `**kwargs`, or passed to a script that is trusted to honour it, or documented but never implemented. The caller believes the check is tight; it runs with its loose default, or with no constraint at all. No error is raised, so the mismatch survives code review and tests that only check the happy path.

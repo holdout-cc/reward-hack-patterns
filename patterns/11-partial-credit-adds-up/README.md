@@ -1,5 +1,10 @@
 # RHP-11. Format-only or partial-credit rewards that add up past the pass threshold
 
+- **TL;DR:** Cheap rubric items (format, tool use, length) can reach the pass threshold without the item that checks the result.
+- **Typical impact:** A tidy, wrong response passes, and "pass" mostly measures format compliance.
+- **Quick test:** For each outcome item, compute the best score reachable with that item failed. It must be below the pass threshold.
+- **Automated check:** Partly: for answer-only rubrics, [`wrong_answer`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#wrong_answer) with `--no-credit-max` set just below the pass threshold flags format credit that reaches it. Process items (tool calls, files) need an environment-level test.
+
 ## What it is
 
 The reward is a weighted sum of rubric items, and the cheap items (output format, calling some tool, writing enough words, producing a file) are worth enough together to reach the pass threshold, or to get within one easy item of it, without the item that checks the actual result. A response that is tidy and wrong passes, and a response that is right but misses a style item can fail.

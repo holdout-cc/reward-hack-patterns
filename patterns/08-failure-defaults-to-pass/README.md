@@ -1,5 +1,10 @@
 # RHP-08. Exceptions, missing data and crashes that default to pass or "skipped"
 
+- **TL;DR:** When a check cannot run (an exception, missing data, a skip), the grader counts it as passed or leaves it out.
+- **Typical impact:** Credit for output that breaks the grader's input, such as an empty file, the wrong file type or missing fields; on a lower-is-better metric, a failure default can rank above every real run.
+- **Quick test:** Submit an empty file, and a file with the right text but none of the expected structure. Both must fail.
+- **Automated check:** Partly: for answer checkers, [`empty`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#empty) and [`refusal`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#refusal) reach the parse-failure path. Skipped checks and failure-path scores in an environment need an environment-level test.
+
 ## What it is
 
 When a check cannot run, the grader treats it as passed, or marks it skipped and leaves it out. Common forms: `except Exception: return True`; `pytest.skip()` when the data to check is missing; `dict.get(field, "")` so a missing field counts as "correctly empty"; skipped criteria dropped before the pass rule is applied; and a failure path that writes a default score which happens to be the best score (0.0 on a lower-is-better metric). The agent's job is then to make the check unable to run.

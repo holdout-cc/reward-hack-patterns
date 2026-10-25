@@ -1,5 +1,10 @@
 # RHP-09. Errors and infrastructure failures dropped from the mean or pass@k
 
+- **TL;DR:** Trials that error are left out of the mean or pass@k, including errors the agent caused.
+- **Typical impact:** Aggregate scores (mean, pass@k, rankings) go up when the agent breaks the harness on tasks it would fail; per-trial rewards are often unaffected.
+- **Quick test:** On the tasks the agent would fail, return truncated JSON or crash the test runner instead. The aggregate must equal the one for wrong answers.
+- **Automated check:** Not covered by grader-probe (needs an environment-level test).
+
 ## What it is
 
 The aggregate score leaves out trials marked as errors, on the reasoning that infrastructure failures should not count against the model. The trouble is in how a trial gets that label. If any exception, missing report or crash is classed as "infrastructure", then failures the agent caused (malformed tool-call JSON, an empty reply, code that kills the test runner before it writes its report) leave the denominator instead of scoring 0. A failed task becomes "no data", and the mean goes up.

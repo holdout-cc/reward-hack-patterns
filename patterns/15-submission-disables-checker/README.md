@@ -1,5 +1,10 @@
 # RHP-15. The submission switches the checker off from inside
 
+- **TL;DR:** The submission shares a program with the tests, or carries a directive the checker obeys, and so switches the check off.
+- **Typical impact:** A fixed string passes every task that uses the same harness, with no task-specific work.
+- **Quick test:** Append a trailing decorator line to a wrong completion, and prefix a wrong submission with each suppression directive the checker supports. Both must fail.
+- **Automated check:** Not covered by grader-probe (needs an environment-level test).
+
 ## What it is
 
 The thing being graded can change how the grader behaves, because the two share a program or because the checker obeys directives in its input. Examples: a harness that pastes the completion and the tests into one source string, so a completion ending in a decorator wraps the test function, or a completion can redefine `assert` helpers and builtins; a type checker or linter run on the output as is, so a leading `# type: ignore`, `# noqa` or a config comment turns it off. The check runs and reports success, but it checked nothing.

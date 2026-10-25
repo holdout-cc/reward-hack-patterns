@@ -1,5 +1,10 @@
 # RHP-03. Substring, containment and hedge matching
 
+- **TL;DR:** The grader checks that the gold string appears in the reply, not that the reply is the answer.
+- **Typical impact:** Full credit for hedge lists, negations ("it is not X") and prompt echoes that contain the gold; in log parsers, a failing test can be read as passed.
+- **Quick test:** Submit the list of all answer options, and a sentence that negates the gold. Both must fail.
+- **Automated check:** grader-probe [`candidate_list`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#candidate_list), [`rejects_gold`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#rejects_gold), [`prompt_echo`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#prompt_echo) and [`wrong_superstring`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#wrong_superstring).
+
 ## What it is
 
 The grader checks that the expected answer appears somewhere in the reply (`gold in reply`) instead of checking that the reply is the answer. A reply that lists several candidates ("Lisbon, Madrid, Paris, Rome"), negates the answer ("it is not Lisbon") or simply repeats a word from the prompt will pass. The same bug appears in log parsers that look for a status keyword anywhere in a line, and in document checks that search the whole text for a value that should sit in a specific field.

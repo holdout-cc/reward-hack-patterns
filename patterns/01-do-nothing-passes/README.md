@@ -1,5 +1,10 @@
 # RHP-01. Do-nothing passes: the initial state already satisfies the verifier
 
+- **TL;DR:** The verifier's success condition is already true in the initial state, so doing nothing passes.
+- **Typical impact:** Full reward for a no-op or an immediate submit on every affected task.
+- **Quick test:** Run each task's verifier on the freshly reset environment, with no agent actions. Nothing should pass.
+- **Automated check:** Not covered by grader-probe (needs an environment-level test); for answer checkers, the closest probe is [`empty`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#empty).
+
 ## What it is
 
 The verifier checks the final state for some condition, and that condition is already true when the episode starts. Typical causes: seed data that already contains the row a "create" task asks for, a fixture file that already has the expected content, or a state check that only looks at the end and never compares it with the start. An agent that does nothing, or calls "submit" straight away, gets full reward.

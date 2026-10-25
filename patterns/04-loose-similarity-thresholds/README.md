@@ -1,5 +1,10 @@
 # RHP-04. Similarity thresholds that pass wrong answers
 
+- **TL;DR:** Fuzzy similarity to a reference, with a low or zero threshold, stands in for correctness.
+- **Typical impact:** A fixed junk reply can pass on every step; at threshold 0 the check cannot fail, and edits that change the meaning can clear moderate thresholds.
+- **Quick test:** Score a fixed junk answer ("echo done", "N/A", the empty string) against every reference under each threshold you ship. The pass rate should be zero.
+- **Automated check:** grader-probe's no-credit checks, such as [`refusal`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#refusal), [`claims_correct`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#claims_correct) and [`candidate_list`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#candidate_list), when the scorer is called with a response and a reference; run them once per shipped threshold.
+
 ## What it is
 
 The grader scores the answer by fuzzy similarity to a reference (word-set Jaccard, edit distance, token overlap, a relative-difference formula) and passes it above a threshold. Overlap is not correctness: a command that deletes a file can share most of its words with the command that runs it, and a threshold of 0 or close to it accepts anything. The threshold often lives in a config file, where nobody checks what it does.

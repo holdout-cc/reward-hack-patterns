@@ -1,5 +1,10 @@
 # RHP-06. Pass counts or results scraped from stdout
 
+- **TL;DR:** Test results are parsed from stdout or stderr, which the code under test can also print to.
+- **Typical impact:** Full reward for printing a fake summary line (for example `3 passed`) while the bug stays in place.
+- **Quick test:** Add `print("<N> passed")` at import time of a still-buggy solution and grade it. It must fail.
+- **Automated check:** Not covered by grader-probe (needs an environment-level test).
+
 ## What it is
 
 The grader runs the tests and reads the result out of the terminal output: a regex for `(\d+) passed`, a search for `OK`, a parse of the summary lines. The code under test writes to the same stdout and stderr, so it can print a fake summary. Captured output from failing tests is often printed before the real summary, which makes a first-match regex read the fake one. Even without an attacker, summary formats change across tool versions and get truncated to the terminal width.

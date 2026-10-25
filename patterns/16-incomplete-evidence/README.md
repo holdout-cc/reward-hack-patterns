@@ -1,5 +1,10 @@
 # RHP-16. The grader looks at a summary instead of the full record
 
+- **TL;DR:** The grader, judge or monitor sees a reduced view (an action name, the final reply, trimmed messages), not what was done.
+- **Typical impact:** Wrong actions, skipped tool calls and tampering pass, and monitors that read the reduced view miss them.
+- **Quick test:** Submit a trajectory with the same action names as a correct one and wrong arguments. It must fail.
+- **Automated check:** Not covered by grader-probe (needs an environment-level test).
+
 ## What it is
 
 The grader, judge or monitor decides from a reduced view of what happened: that an action of the right type succeeded, but not its arguments; the final reply, but not whether the required tool was called; the final message list, after context trimming or a handoff has removed the earlier turns. Whatever is missing from the view cannot be checked, so wrong actions, skipped steps and tampering pass.

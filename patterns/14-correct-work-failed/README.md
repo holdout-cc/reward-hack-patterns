@@ -1,5 +1,10 @@
 # RHP-14. Correct work wrongly failed
 
+- **TL;DR:** The grader compares the wrong representation (bytes, one spelling, a wrong label) and fails correct work.
+- **Typical impact:** No exploit: correct work done differently loses credit, the achievable score is capped, and a policy is pushed toward the grader's quirks.
+- **Quick test:** Rewrite each reference solution in an equivalent form (key order, formatting, quote style) and check that it still passes.
+- **Automated check:** For answer checkers, grader-probe's full-credit checks, such as [`whitespace`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#whitespace), [`trailing_period`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#trailing_period), [`numeric_format`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#numeric_format) and [`known_correct`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#known_correct). State, code and label comparisons need an environment-level test.
+
 ## What it is
 
 The grader rejects correct work because it compares the wrong representation. Typical forms: the final state is checked by hashing its serialised text, so key order, whitespace, list order or `10` versus `10.0` all fail; code is checked for one spelling of the fix, so a different quote style or argument order fails; a reference label is wrong, so the right answer is marked incorrect; or a parse error on a penalty criterion applies the penalty. This is the false-negative side of the catalogue: no exploit, just lost credit.

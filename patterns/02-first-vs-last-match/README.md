@@ -1,5 +1,10 @@
 # RHP-02. First-match, last-match and multiple answers
 
+- **TL;DR:** Answer extraction takes the first match, or accepts any match, so drafts and lists of candidates get credit.
+- **Typical impact:** Credit for listing many candidate answers (any-match) or for an answer the reply later withdrew (first-match); a right final answer after a different draft can fail.
+- **Quick test:** Grade a reply that lists every plausible answer, and one that states the gold first and a wrong answer last.
+- **Automated check:** grader-probe [`candidate_list`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#candidate_list), [`wrong_after_correct`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#wrong_after_correct) and [`gold_in_reasoning`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#gold_in_reasoning).
+
 ## What it is
 
 The grader pulls the answer out of free text with a regex, and the rule for which match counts is wrong. If it takes the first match, a reply that states a draft answer and then changes its mind is graded on the draft. If it accepts any match, a reply can list many candidates and one of them will be right. The same mistake shows up outside answer extraction: any grader that searches a stream for the first "N passed" or "score: X" will pick up text the agent wrote before the real line.

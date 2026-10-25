@@ -1,5 +1,10 @@
 # RHP-07. Exit-code-only checks
 
+- **TL;DR:** Exit code 0 is the only pass signal, so ending the process early counts as passing.
+- **Typical impact:** One line (`os._exit(0)`, `raise SystemExit(0)`) passes every task that shares the harness; runs where all tests skip or none are collected can pass too.
+- **Quick test:** Prepend `import os; os._exit(0)` to a wrong solution. It must fail.
+- **Automated check:** Not covered by grader-probe (needs an environment-level test).
+
 ## What it is
 
 The grader runs the tests (or a program that is the solution followed by the asserts) and passes the task if the process exits with code 0. Nothing confirms that the tests ran. A solution that ends the process early with code 0 (`os._exit(0)`, `raise SystemExit(0)`, `sys.exit()`, a signal handler, an `atexit` hook) never reaches a single assert. Test runners also exit 0 when every test is skipped or when no tests were collected under some settings.

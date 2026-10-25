@@ -1,5 +1,10 @@
 # RHP-17. Reference answers that nobody verified
 
+- **TL;DR:** The reference answer comes from a model or from input the agent can change, and nobody checks it.
+- **Typical impact:** In self-play, false or ambiguous labels can earn the maximum proposer reward while solvers who answer correctly get 0; eval error concentrates on the hardest labels.
+- **Quick test:** Check a sample of labels with a method that does not depend on where they came from.
+- **Automated check:** Not covered by grader-probe (needs an environment-level test).
+
 ## What it is
 
 The "ground truth" the grader compares against is not established independently. It comes from a model (a self-play proposer, a synthetic data generator), or it is recomputed at grading time from inputs the agent could change. The grader then checks agreement with a label that may be wrong, ambiguous or controlled by the party being graded. In self-play, a proposer paid for problems that split the solvers can earn full reward with a false or ambiguous label, because wrong labels split solvers just as well as hard problems do.

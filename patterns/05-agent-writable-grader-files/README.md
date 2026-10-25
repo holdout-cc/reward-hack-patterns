@@ -1,5 +1,10 @@
 # RHP-05. Agent-writable tests, verifier scripts, reward files and reference data
 
+- **TL;DR:** The agent can write files the grader trusts: tests, test scripts, reward files or the inputs the expected answer is computed from.
+- **Typical impact:** Full reward on every task built the same way, by stubbing the tests, planting a reward file or editing the reference input.
+- **Quick test:** Run a scripted agent that overwrites the tests with passing stubs and writes the maximum reward to every reward path it can find. It must score 0.
+- **Automated check:** Not covered by grader-probe (needs an environment-level test).
+
 ## What it is
 
 Something the grader relies on sits where the agent can write to it during its turn: the test files, the test script, the reward file the script writes, the input the expected answer is computed from, or code the verifier later runs. Grading then runs in the same place, after the agent, and trusts what it finds. The agent can replace the tests with `pass`, write `1` into the reward file, or change the input so the "expected" answer becomes trivial. Telling the agent "do not edit tests/" in the prompt is not a control.

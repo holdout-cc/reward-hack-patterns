@@ -1,5 +1,10 @@
 # RHP-10. LLM-judge output parsing that defaults to the positive label
 
+- **TL;DR:** The judge's verdict is parsed loosely, so `"false"`, other wording or an empty reply becomes a pass.
+- **Typical impact:** Unmet criteria scored as met, with no error reported, and rewards that can shift when the judge model or prompt changes.
+- **Quick test:** Feed the verdict parser `{"met": "false"}`, an empty string and a negative verdict that avoids your keyword. None may pass.
+- **Automated check:** Not covered by grader-probe (the bug is in the verdict parser; test it directly with fixed judge outputs).
+
 ## What it is
 
 A model-graded check asks the judge for a verdict and then parses the reply loosely. Two common forms: the judge returns JSON and the grader calls `bool()` on the value, so the string `"false"` (or `"no"`, or `"0"`) is truthy and becomes a pass; or the judge returns text and the grader passes unless it finds a specific negative keyword, so any other wording, a refusal or an empty reply is a pass. Either way, the parser's failure mode is the positive label.
