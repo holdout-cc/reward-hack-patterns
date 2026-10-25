@@ -18,11 +18,11 @@ The folder has two files:
 
 Write the toy grader from scratch. Don't copy code from the project where you saw the pattern.
 
-Add a row for the pattern to the table in the top-level `README.md` and a line to the checklist.
+Add a row for the pattern to the table in the top-level `README.md`, with its ID and the number of linked public issues, and a checklist line that starts with its ID. If the pattern has a distinctive symptom, add it to "Which pattern is this?".
 
 ## Adding a "Seen in the wild" link
 
-A link should point to a public issue, pull request or write-up that shows a concrete instance of the pattern in a named project, ideally with a reproduction. Describe the instance in one line. If the instance only partly fits the pattern, say so in that line.
+A link should point to a public issue, pull request or write-up that shows a concrete instance of the pattern in a named project, ideally with a reproduction. Describe the instance in one line. If the instance only partly fits the pattern, say so in that line. Update the pattern's "Seen in the wild" count in the top-level `README.md` table.
 
 Please don't link to private reports, unconfirmed suspicions, or anything that would help someone attack a live system.
 
