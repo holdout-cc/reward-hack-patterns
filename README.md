@@ -87,6 +87,16 @@ The examples need Python 3.9 or later and nothing outside the standard library. 
 
 The links point to public issues filed on the named repositories, each with a reproduction. Some may have been fixed or closed since; the issue thread is the place to check current status. The toy examples here are written from scratch and do not reuse code from those repositories.
 
+## Citing
+
+Every pattern has a stable ID, `RHP-01` to `RHP-17`. An ID always refers to the same pattern, and pattern folders are not renamed, so links keep working. New patterns get new IDs.
+
+To refer to one pattern, give its ID and name and link its folder:
+
+> RHP-03, Substring and hedge matching, in Holdout's reward-hack-patterns: https://github.com/holdout-cc/reward-hack-patterns/tree/main/patterns/03-substring-and-hedge-matching
+
+To cite the catalogue as a whole, use [CITATION.cff](CITATION.cff) (GitHub shows it as "Cite this repository"), and give the version from [CHANGELOG.md](CHANGELOG.md) if the exact wording matters.
+
 ## Contributing
 
 Issues and pull requests are welcome: new patterns, better fixes, clearer examples, or public instances of a pattern that should be linked. For a new pattern, please include a runnable stdlib-only `example.py` in the same shape as the others, and make sure `python tests/test_examples.py` passes. For a new "Seen in the wild" link, please link a public issue or write-up that shows the instance. See [CONTRIBUTING.md](CONTRIBUTING.md) for the details.
