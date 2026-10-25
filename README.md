@@ -79,7 +79,10 @@ Run them all:
 python -m pytest tests/
 # or, without pytest:
 python tests/test_examples.py
+python tests/test_docs.py
 ```
+
+`tests/test_docs.py` checks the pattern pages (ID, at-a-glance block, sections), the index table and checklist, relative links, and `CITATION.cff`.
 
 The examples need Python 3.9 or later and nothing outside the standard library. CI runs them on Python 3.9 to 3.13.
 

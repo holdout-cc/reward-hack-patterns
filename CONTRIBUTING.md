@@ -30,6 +30,7 @@ Please don't link to private reports, unconfirmed suspicions, or anything that w
 
 ```
 python tests/test_examples.py
+python tests/test_docs.py
 ```
 
-All examples must pass. CI runs the same check on Python 3.9 to 3.13.
+All examples must pass, and the documentation checks must pass too: they cover the pattern page layout, the index table counts, the checklist IDs, relative links and `CITATION.cff`. CI runs both on Python 3.9 to 3.13.
