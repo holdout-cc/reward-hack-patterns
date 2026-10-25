@@ -1,4 +1,4 @@
-# 13. Checks that ignore their own options
+# RHP-13. Checks that ignore their own options
 
 ## What it is
 

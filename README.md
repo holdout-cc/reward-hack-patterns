@@ -8,25 +8,25 @@ The examples are toys. They are deliberately small so the bug is visible in a fe
 
 ## Patterns
 
-| # | Pattern | What goes wrong |
-|---|---------|-----------------|
-| 01 | [Do-nothing passes](patterns/01-do-nothing-passes/) | The initial state already satisfies the verifier, so a no-op scores. |
-| 02 | [First-match, last-match and multiple answers](patterns/02-first-vs-last-match/) | Answer extraction reads a draft, or accepts any of several answers. |
-| 03 | [Substring and hedge matching](patterns/03-substring-and-hedge-matching/) | `gold in reply` passes lists of candidates, negations and echoes. |
-| 04 | [Loose similarity thresholds](patterns/04-loose-similarity-thresholds/) | Fuzzy overlap and low thresholds accept wrong or unrelated answers. |
-| 05 | [Agent-writable grader files](patterns/05-agent-writable-grader-files/) | The agent can edit the tests, the verifier, the reward file or the reference input. |
-| 06 | [Stdout scraping](patterns/06-stdout-scraping/) | Pass counts are read from output the code under test can print to. |
-| 07 | [Exit-code-only checks](patterns/07-exit-code-only/) | `os._exit(0)` before the tests run counts as passing. |
-| 08 | [Failure defaults to pass](patterns/08-failure-defaults-to-pass/) | Exceptions, missing data and skips count as passed or are left out. |
-| 09 | [Errors dropped from the aggregate](patterns/09-errors-dropped-from-aggregate/) | Agent-caused errors are labelled infrastructure and leave the mean or pass@k. |
-| 10 | [LLM-judge parsing](patterns/10-llm-judge-parsing/) | `bool("false")` is `True`, and unparseable verdicts become passes. |
-| 11 | [Partial credit adds up](patterns/11-partial-credit-adds-up/) | Format and process items reach the threshold without a correct result. |
-| 12 | [Source-text matching](patterns/12-source-text-matching/) | The expected snippet in a comment passes; the code is never run. |
-| 13 | [Ignored options](patterns/13-ignored-options/) | Tolerances, schemas and budgets are accepted and then not applied. |
-| 14 | [Correct work failed](patterns/14-correct-work-failed/) | Byte-level comparisons and wrong labels reject equivalent correct work. |
-| 15 | [Submission disables the checker](patterns/15-submission-disables-checker/) | The output shares a program with the tests, or carries a directive that turns the check off. |
-| 16 | [Incomplete evidence](patterns/16-incomplete-evidence/) | The grader sees a summary (action name, final reply, trimmed messages), not what was done. |
-| 17 | [Unverified reference answers](patterns/17-unverified-reference-answers/) | The label comes from a model or from agent-writable input and is never checked. |
+| ID | Pattern | What goes wrong |
+|----|---------|-----------------|
+| RHP-01 | [Do-nothing passes](patterns/01-do-nothing-passes/) | The initial state already satisfies the verifier, so a no-op scores. |
+| RHP-02 | [First-match, last-match and multiple answers](patterns/02-first-vs-last-match/) | Answer extraction reads a draft, or accepts any of several answers. |
+| RHP-03 | [Substring and hedge matching](patterns/03-substring-and-hedge-matching/) | `gold in reply` passes lists of candidates, negations and echoes. |
+| RHP-04 | [Loose similarity thresholds](patterns/04-loose-similarity-thresholds/) | Fuzzy overlap and low thresholds accept wrong or unrelated answers. |
+| RHP-05 | [Agent-writable grader files](patterns/05-agent-writable-grader-files/) | The agent can edit the tests, the verifier, the reward file or the reference input. |
+| RHP-06 | [Stdout scraping](patterns/06-stdout-scraping/) | Pass counts are read from output the code under test can print to. |
+| RHP-07 | [Exit-code-only checks](patterns/07-exit-code-only/) | `os._exit(0)` before the tests run counts as passing. |
+| RHP-08 | [Failure defaults to pass](patterns/08-failure-defaults-to-pass/) | Exceptions, missing data and skips count as passed or are left out. |
+| RHP-09 | [Errors dropped from the aggregate](patterns/09-errors-dropped-from-aggregate/) | Agent-caused errors are labelled infrastructure and leave the mean or pass@k. |
+| RHP-10 | [LLM-judge parsing](patterns/10-llm-judge-parsing/) | `bool("false")` is `True`, and unparseable verdicts become passes. |
+| RHP-11 | [Partial credit adds up](patterns/11-partial-credit-adds-up/) | Format and process items reach the threshold without a correct result. |
+| RHP-12 | [Source-text matching](patterns/12-source-text-matching/) | The expected snippet in a comment passes; the code is never run. |
+| RHP-13 | [Ignored options](patterns/13-ignored-options/) | Tolerances, schemas and budgets are accepted and then not applied. |
+| RHP-14 | [Correct work failed](patterns/14-correct-work-failed/) | Byte-level comparisons and wrong labels reject equivalent correct work. |
+| RHP-15 | [Submission disables the checker](patterns/15-submission-disables-checker/) | The output shares a program with the tests, or carries a directive that turns the check off. |
+| RHP-16 | [Incomplete evidence](patterns/16-incomplete-evidence/) | The grader sees a summary (action name, final reply, trimmed messages), not what was done. |
+| RHP-17 | [Unverified reference answers](patterns/17-unverified-reference-answers/) | The label comes from a model or from agent-writable input and is never checked. |
 
 ## Checklist before you ship an environment
 

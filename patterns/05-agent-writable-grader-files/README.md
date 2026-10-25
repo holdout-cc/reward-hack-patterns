@@ -1,4 +1,4 @@
-# 05. Agent-writable tests, verifier scripts, reward files and reference data
+# RHP-05. Agent-writable tests, verifier scripts, reward files and reference data
 
 ## What it is
 

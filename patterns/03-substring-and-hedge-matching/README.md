@@ -1,4 +1,4 @@
-# 03. Substring, containment and hedge matching
+# RHP-03. Substring, containment and hedge matching
 
 ## What it is
 
@@ -52,7 +52,7 @@ def fixed_status(line):
     return first if first in {"PASSED", "FAILED", "ERROR", "SKIPPED"} else "UNKNOWN"
 ```
 
-If free-form answers are expected, extract a single answer first (see [02](../02-first-vs-last-match/)) and compare that.
+If free-form answers are expected, extract a single answer first (see [RHP-02](../02-first-vs-last-match/)) and compare that.
 
 ## How to test for it
 

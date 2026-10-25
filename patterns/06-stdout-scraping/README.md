@@ -1,4 +1,4 @@
-# 06. Pass counts or results scraped from stdout
+# RHP-06. Pass counts or results scraped from stdout
 
 ## What it is
 

@@ -1,4 +1,4 @@
-# 15. The submission switches the checker off from inside
+# RHP-15. The submission switches the checker off from inside
 
 ## What it is
 

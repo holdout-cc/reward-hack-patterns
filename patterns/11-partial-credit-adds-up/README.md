@@ -1,4 +1,4 @@
-# 11. Format-only or partial-credit rewards that add up past the pass threshold
+# RHP-11. Format-only or partial-credit rewards that add up past the pass threshold
 
 ## What it is
 
@@ -48,7 +48,7 @@ assert max_score_without("correct") < THRESHOLD   # fails for the vulnerable rub
 
 ## Seen in the wild
 
-- [Toloka/tolokaforge#1933](https://github.com/Toloka/tolokaforge/issues/1933): transcript rules worth 0.35 of the score are met by any agent that calls `bash` and `write_file` and uses a few expected words, so the unfixed file already scores 0.783 against a 0.8 threshold, and adding the expected snippet in a comment tips it to 1.0 (see [12](../12-source-text-matching/)).
+- [Toloka/tolokaforge#1933](https://github.com/Toloka/tolokaforge/issues/1933): transcript rules worth 0.35 of the score are met by any agent that calls `bash` and `write_file` and uses a few expected words, so the unfixed file already scores 0.783 against a 0.8 threshold, and adding the expected snippet in a comment tips it to 1.0 (see [RHP-12](../12-source-text-matching/)).
 
 ## Run the example
 

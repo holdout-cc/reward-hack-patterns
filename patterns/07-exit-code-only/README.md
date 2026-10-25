@@ -1,4 +1,4 @@
-# 07. Exit-code-only checks
+# RHP-07. Exit-code-only checks
 
 ## What it is
 
@@ -36,7 +36,7 @@ def fixed(solution):
 
 **Robust fix:** the results must be recorded by a trusted process that never imports or runs the code under test in its own process. Run the code under test in a separate, sandboxed process; the trusted process drives the tests against it (for example over a pipe or RPC, or by comparing outputs it collects itself) and records each test's outcome somewhere the code under test cannot write. The grader then requires the expected test IDs with the expected outcomes: every expected test present and passed, and skipped, missing or extra tests treated as failures. Do not rely on exit codes or printed markers.
 
-A JUnit XML report from pytest (see [06](../06-stdout-scraping/)) is stronger than an exit code, because it names each test and its outcome, but if it is written from inside the same pytest process that imports the code under test, that code can still forge or rewrite it. Use it only when the report is produced, or the outcomes are independently checked, by a process the code under test cannot reach. The example keeps the sentinel because a full harness of that kind is too heavy for a standard-library toy.
+A JUnit XML report from pytest (see [RHP-06](../06-stdout-scraping/)) is stronger than an exit code, because it names each test and its outcome, but if it is written from inside the same pytest process that imports the code under test, that code can still forge or rewrite it. Use it only when the report is produced, or the outcomes are independently checked, by a process the code under test cannot reach. The example keeps the sentinel because a full harness of that kind is too heavy for a standard-library toy.
 
 ## How to test for it
 

@@ -1,4 +1,4 @@
-# 16. The grader looks at a summary instead of the full record
+# RHP-16. The grader looks at a summary instead of the full record
 
 ## What it is
 

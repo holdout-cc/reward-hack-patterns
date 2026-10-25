@@ -1,4 +1,4 @@
-# 02. First-match, last-match and multiple answers
+# RHP-02. First-match, last-match and multiple answers
 
 ## What it is
 

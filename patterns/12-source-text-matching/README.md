@@ -1,8 +1,8 @@
-# 12. Source-text matching instead of running the code
+# RHP-12. Source-text matching instead of running the code
 
 ## What it is
 
-A coding task is graded by checking whether the source file contains an expected snippet (`"price * (1 - rate)" in source`) rather than by running the code. Comments, string literals and dead code all count, so the bug can stay in place with the snippet pasted in a comment. The same check fails correct fixes written any other way (see [14](../14-correct-work-failed/)).
+A coding task is graded by checking whether the source file contains an expected snippet (`"price * (1 - rate)" in source`) rather than by running the code. Comments, string literals and dead code all count, so the bug can stay in place with the snippet pasted in a comment. The same check fails correct fixes written any other way (see [RHP-14](../14-correct-work-failed/)).
 
 ## Why it matters
 
@@ -34,7 +34,7 @@ def fixed(source):
         return False
 ```
 
-Keep the behaviour tests hidden from the agent and run them in a clean copy (see [05](../05-agent-writable-grader-files/)). If a structural check is truly needed (for example "must not call `eval`"), parse the code with `ast` so comments and strings do not count, and do not let it decide pass/fail on its own.
+Keep the behaviour tests hidden from the agent and run them in a clean copy (see [RHP-05](../05-agent-writable-grader-files/)). If a structural check is truly needed (for example "must not call `eval`"), parse the code with `ast` so comments and strings do not count, and do not let it decide pass/fail on its own.
 
 ## How to test for it
 

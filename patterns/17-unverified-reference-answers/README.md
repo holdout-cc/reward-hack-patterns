@@ -1,4 +1,4 @@
-# 17. Reference answers that nobody verified
+# RHP-17. Reference answers that nobody verified
 
 ## What it is
 
@@ -48,7 +48,7 @@ For static datasets, the same idea: store reference answers that were checked, k
 ## Seen in the wild
 
 - [PrimeIntellect-ai/verifiers#2947](https://github.com/PrimeIntellect-ai/verifiers/issues/2947): `proposer_solver` uses the proposer's answer as the solvers' ground truth after checking only that it is an integer, so false or ambiguous problems earn maximum learnability.
-- [UiPath/coder_eval#233](https://github.com/UiPath/coder_eval/issues/233): the expected mass is not stored but recomputed at grading time from an input file the agent can overwrite (see [05](../05-agent-writable-grader-files/)).
+- [UiPath/coder_eval#233](https://github.com/UiPath/coder_eval/issues/233): the expected mass is not stored but recomputed at grading time from an input file the agent can overwrite (see [RHP-05](../05-agent-writable-grader-files/)).
 
 ## Run the example
 

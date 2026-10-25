@@ -1,4 +1,4 @@
-# 04. Similarity thresholds that pass wrong answers
+# RHP-04. Similarity thresholds that pass wrong answers
 
 ## What it is
 
@@ -52,7 +52,7 @@ The right floor depends on the metric; the point is to reject values that make t
 ## Seen in the wild
 
 - [NVIDIA-NeMo/Gym#4900](https://github.com/NVIDIA-NeMo/Gym/issues/4900): two shipped configs set `word_count_similarity_threshold: 0.0`, so the check can never fail for multi-word arguments; `execute_bash(command="echo done")` passed all 346 sampled SWE rows that have a multi-word string argument.
-- [braintrustdata/autoevals#251](https://github.com/braintrustdata/autoevals/issues/251): `NumericDiff` scores nearby positive numbers at about `1 - relative_error / 2`, so a wrong year scores 0.9998 and clears a 0.99 bar (see also [13](../13-ignored-options/)).
+- [braintrustdata/autoevals#251](https://github.com/braintrustdata/autoevals/issues/251): `NumericDiff` scores nearby positive numbers at about `1 - relative_error / 2`, so a wrong year scores 0.9998 and clears a 0.99 bar (see also [RHP-13](../13-ignored-options/)).
 
 ## Run the example
 

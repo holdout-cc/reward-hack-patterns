@@ -1,4 +1,4 @@
-# 09. Errors and infrastructure failures dropped from the mean or pass@k
+# RHP-09. Errors and infrastructure failures dropped from the mean or pass@k
 
 ## What it is
 

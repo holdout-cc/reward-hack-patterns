@@ -1,4 +1,4 @@
-# 14. Correct work wrongly failed
+# RHP-14. Correct work wrongly failed
 
 ## What it is
 
@@ -53,7 +53,7 @@ Decide per field what is significant. If list order matters for a field, do not 
 - Take each task's reference solution and rewrite it in a different but equivalent form: reorder keys, reformat, swap quote styles, rename local variables, use a different algorithm. Every variant must pass.
 - Run the reference solution through the grader. It sounds obvious, but a reference that fails is a common finding.
 - Look at tasks where strong models fail with outputs that look right, and read the grader's comparison.
-- Spot-check reference labels independently (see [17](../17-unverified-reference-answers/)).
+- Spot-check reference labels independently (see [RHP-17](../17-unverified-reference-answers/)).
 
 ## Seen in the wild
 
