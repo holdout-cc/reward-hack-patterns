@@ -27,9 +27,11 @@ def vulnerable(code):
 EXPLOIT = 'print("3 passed")\n\ndef add(a, b):\n    return a - b\n'
 ```
 
-## Fixed grader
+## Partially mitigated grader
 
-Do not let the code under test write the verdict. Have the harness return structured data through a channel the grader owns, and have the grader decide.
+This grader is a **partial mitigation**, not a complete fix. It stops fake summary lines: the grader checks per-case return values instead of reading stdout.
+
+Do not let the code under test write the verdict. Have the harness return structured data in a report the code under test can still rewrite, and have the grader decide.
 
 ```python
 def fixed(code):
@@ -43,7 +45,11 @@ def fixed(code):
     return all(r.get("ok") and r.get("value") == want for r, (_, want) in zip(results, CASES))
 ```
 
-With pytest, the practical version is `--junitxml=<path outside the workspace>`: delete the file first, require it to exist after the run, and check that every expected test id is present and passed. Do not count passes; compare against the list of expected test ids.
+With pytest, the practical version is `--junitxml=<path outside the workspace>`: delete the file first, require it to exist after the run, and check that every expected test id is present and passed. Do not count passes; compare against the list of expected test ids. But if the report is written inside the pytest process that imports the code under test, that code can forge it.
+
+**Known limitation:** the harness imports the code under test in the same process that writes `results.json`, and passes it the file's path, so that code can write its own results (for example from an `atexit` handler, or before calling `os._exit(0)`) and the real cases never decide the verdict.
+
+**Robust fix:** see [RHP-07](../07-exit-code-only/). A trusted process that never imports the code under test records each expected test's outcome somewhere that code cannot write.
 
 ## How to test for it
 

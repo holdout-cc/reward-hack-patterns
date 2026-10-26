@@ -88,7 +88,7 @@ The examples need Python 3.9 or later and nothing outside the standard library. 
 
 ## About the "Seen in the wild" links
 
-The links point to public issues filed on the named repositories, each with a reproduction. Some may have been fixed or closed since; the issue thread is the place to check current status. The toy examples here are written from scratch and do not reuse code from those repositories.
+The links point to public issues filed on the named repositories, each with a reproduction. Holdout filed these issues; unless a thread says otherwise, the maintainers have not confirmed them. Some may have been fixed or closed since; the issue thread is the place to check current status. The toy examples here are written from scratch and do not reuse code from those repositories.
 
 ## Citing
 
@@ -96,7 +96,7 @@ Every pattern has a stable ID, `RHP-01` to `RHP-17`. An ID always refers to the 
 
 To refer to one pattern, give its ID and name and link its folder:
 
-> RHP-03, Substring and hedge matching, in Holdout's reward-hack-patterns: https://github.com/holdout-cc/reward-hack-patterns/tree/main/patterns/03-substring-and-hedge-matching
+> RHP-03, Substring, containment and hedge matching, in Holdout's reward-hack-patterns: https://github.com/holdout-cc/reward-hack-patterns/tree/main/patterns/03-substring-and-hedge-matching
 
 To cite the catalogue as a whole, use [CITATION.cff](CITATION.cff) (GitHub shows it as "Cite this repository"), and give the version from [CHANGELOG.md](CHANGELOG.md) if the exact wording matters.
 

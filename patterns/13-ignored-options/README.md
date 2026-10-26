@@ -3,7 +3,7 @@
 - **TL;DR:** A scorer accepts an option that should make it stricter (a tolerance, schema or budget) and never applies it.
 - **Typical impact:** Every output between the documented bar and the real one gets credit, and nothing fails loudly.
 - **Quick test:** For each documented option, write one test where the option changes the result. If no such test can be written, the option does nothing.
-- **Automated check:** Partly: with the option passed through an adapter, [`wrong_answer`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#wrong_answer) and [`wrong_superstring`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#wrong_superstring) flag the false credit that results, but do not show that the option is ignored.
+- **Automated check:** Partly: with the option passed through an adapter, [`wrong_answer`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#wrong_answer) and [`wrong_superstring`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#wrong_superstring) may flag the false credit when the wrong answer falls inside the ignored tolerance; showing that an option is ignored needs comparing results under different option settings.
 
 ## What it is
 

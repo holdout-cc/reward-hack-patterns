@@ -39,7 +39,7 @@ def vulnerable_lint(source):
 EVAL_EXPLOIT = "# checker: off\ndef total(expr):\n    return eval(expr)\n"
 ```
 
-## Fixed grader
+## Partially mitigated grader
 
 Keep the submission and the checker apart. Parse the submission on its own, allow only the node types you expect, run it in its own namespace, and run the tests in a fresh namespace that receives only the function object. Strip or reject directives that configure the checker.
 

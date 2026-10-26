@@ -3,7 +3,7 @@
 - **TL;DR:** Code is graded by searching its source for an expected snippet instead of running it.
 - **Typical impact:** The bug can stay in place with the snippet pasted in a comment, and correct fixes written another way fail.
 - **Quick test:** Leave the bug in, add the expected snippet in a comment, and grade it. It must fail.
-- **Automated check:** Partly: grader-probe's no-credit checks flag a snippet search, but do not send the snippet in a comment; add that as your own [`custom_no_credit`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#custom_no_credit) response.
+- **Automated check:** Partly: when the grader only searches for the expected answer text, grader-probe's [`candidate_list`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#candidate_list), [`rejects_gold`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#rejects_gold) and [`long_padding`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#long_padding) probes contain that text and can flag it; a snippet hidden in a code comment is not built in, so add it as your own [`custom_no_credit`](https://github.com/holdout-cc/grader-probe/blob/main/docs/checks.md#custom_no_credit) response.
 
 ## What it is
 

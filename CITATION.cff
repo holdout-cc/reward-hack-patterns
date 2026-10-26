@@ -1,7 +1,7 @@
 cff-version: 1.2.0
-message: "If you refer to this catalogue, please cite it as below. To refer to one pattern, use its ID and name, for example RHP-03, Substring and hedge matching."
+message: "If you refer to this catalogue, please cite it as below. To refer to one pattern, use its ID and name, for example RHP-03, Substring, containment and hedge matching."
 title: "reward-hack-patterns"
-abstract: "A catalogue of the ways RL environment graders and eval scorers give credit for work that was not done, or fail work that was. Each pattern has a stable ID (RHP-01 to RHP-17), a minimal vulnerable grader with its exploit, a fixed grader, a way to test for it, links to public instances, and a runnable Python example."
+abstract: "A catalogue of the ways RL environment graders and eval scorers give credit for work that was not done, or fail work that was. Each pattern has a stable ID (RHP-01 to RHP-17), a minimal vulnerable grader with its exploit, a demonstrated mitigation and its limits, a way to test for it, links to public instances, and a runnable Python example."
 type: software
 authors:
   - name: "Holdout"

@@ -1,5 +1,9 @@
 """Pattern 06: pass counts or results scraped from stdout.
 
+The fixed grader below is a partial mitigation: it no longer trusts stdout, but
+the solution still runs in the process that writes results.json, so it could
+overwrite that file. See the pattern README for the robust fix.
+
 A tiny test runner runs in a child process, imports the solution and prints
 a summary line such as "3 passed, 0 failed". The vulnerable grader reads the
 first "N passed" it finds in the output. The solution's own prints land in
